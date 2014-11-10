@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="app/3a33c6f8.app.css"/>
+    <link rel="stylesheet" href="app/ae95e6f3.app.css"/>
   </head>
   <body ng-app="discoveryApp">
     <!--[if lt IE 7]>
@@ -21,13 +21,11 @@
 
     <!-- Alert Messages -->
     <div class="successmsg-block" id="successmsg">
-      <p>Success</p>
-      <i class="fa fa-times"></i>
+      <p><i class="fa fa-check"></i> Action Successful!</p>
     </div>
 
     <div class="failuremsg-block" id="failuremsg">
-      <p>Failed</p>
-      <i class="fa fa-times"></i>
+      <p><i class="fa fa-exclamation"></i> Action Failed!</p>
     </div>
 
     <!-- MAIN CONTENT AND INJECTED VIEWS -->
@@ -57,11 +55,12 @@
     <script src="app/302afd65.vendor.js"></script>
 
         <!-- build:js({.tmp,client}) app/app.js -->
-        <script src="app/ce63a49c.app.js"></script>
+        <script src="app/28776d53.app.js"></script>
           <!-- injector:js -->
           <script src="app/admin/admin.js"></script>
           <script src="app/admin/admin.service.js"></script>
           <script src="app/admin/controller/admin.js"></script>
+          <script src="app/admin/controller/adminAddQuestion.js"></script>
           <script src="app/admin/controller/adminCreate.js"></script>
           <script src="app/admin/controller/adminHeader.js"></script>
           <script src="app/admin/controller/adminLogin.js"></script>
@@ -72,6 +71,8 @@
           <script src="app/home/home.controller.js"></script>
           <script src="app/home/home.js"></script>
           <script src="app/home/home.service.js"></script>
+          <script src="app/lab/lab.controller.js"></script>
+          <script src="app/lab/lab.js"></script>
           <script src="app/labs/labs.controller.js"></script>
           <script src="app/labs/labs.js"></script>
           <script src="app/profile/profile.controller.js"></script>
