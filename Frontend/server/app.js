@@ -37,7 +37,7 @@ server.listen(config.port, config.ip, function () {
 */
 
 // Start https server
-server.listen(8443, config.ip, function () {
+server.listen(3443, config.ip, function () {
   console.log('Express server listening on 8080, in %s mode', app.get('env'));
 });
 
