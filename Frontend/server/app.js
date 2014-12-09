@@ -11,8 +11,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 var https = require('https');
 var fs         = require("fs");
-var key_file   = "certs/file.pem";
-var cert_file  = "certs/file.crt";
+var key_file   = "server/certs/localhost.key";
+var cert_file  = "server/certs/discovery_a2c2_asu_edu_cert.cer";
 
 var httpsconfig     = {
   key: fs.readFileSync(key_file),
