@@ -11,8 +11,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 var https = require('https');
 var fs         = require("fs");
-var key_file   = "certs/localhost.key";
-var cert_file  = "certs/discovery_a2c2_asu_edu.cer";
+var key_file   = "certs/file.pem";
+var cert_file  = "certs/file.crt";
 
 var httpsconfig     = {
   key: fs.readFileSync(key_file),
@@ -38,7 +38,7 @@ server.listen(config.port, config.ip, function () {
 
 // Start https server
 server.listen(3443, config.ip, function () {
-  console.log('Express server listening on 8080, in %s mode', app.get('env'));
+  console.log('Express server listening on 3443, in %s mode', app.get('env'));
 });
 
 // Expose app
