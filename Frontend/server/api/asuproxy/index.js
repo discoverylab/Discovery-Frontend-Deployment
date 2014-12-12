@@ -71,8 +71,9 @@ router.route('/ticket/:ticket_id')
                 console.dir(profileresult);
                 var asuuser = {id:'', email: '', name: ''};
                 asuuser.id =  casuser;
-
-                res.send(profileresult);
+                asuuser.email = profileresult.searchResults.person[0].email[0];
+                asuuser.name = profileresult.searchResults.person[0].displayName[0];
+                res.json(asuuser);
               });
 
             });
