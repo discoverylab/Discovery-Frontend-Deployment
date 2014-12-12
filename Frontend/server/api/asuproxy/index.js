@@ -69,7 +69,7 @@ router.route('/ticket/:ticket_id')
               var profilexml = pd;
               parseString(profilexml, function (error, profileresult) {
                 console.dir(profileresult);
-                var asuuser = {id:'', email: '', name: ''};
+                var asuuser = {id:'', email: '', name: '', type:true};
                 asuuser.id =  casuser;
                 asuuser.email = profileresult.searchResults.person[0].email[0];
                 asuuser.name = profileresult.searchResults.person[0].displayName[0];
