@@ -95,7 +95,9 @@ router.route('/ticket/:ticket_id')
 
           }
           else{
-            res.json('invalid');
+            output.status = false;
+            output.user = null;
+            res.json(output);
           }
 
 
