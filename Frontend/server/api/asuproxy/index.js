@@ -32,6 +32,8 @@ router.route('/ticket/:ticket_id')
     //console.info(optionsget);
     //console.info('Do the GET call');
 
+    var output = {status:false, user:''};
+
 // do the GET request
     var reqGet = https.request(optionsget, function(response) {
       console.log("statusCode: ", response.statusCode);
@@ -75,7 +77,9 @@ router.route('/ticket/:ticket_id')
                   asuuser.id =  casuser;
                   asuuser.email = profileresult.searchResults.person[0].email[0];
                   asuuser.name = profileresult.searchResults.person[0].displayName[0];
-                  res.json(asuuser);
+                  output.status = true;
+                  output.user = asuuser;
+                  res.json(output);
                 });
 
               });
@@ -84,7 +88,9 @@ router.route('/ticket/:ticket_id')
             profilereqGet.end();
             profilereqGet.on('error', function(e) {
               console.error(e);
-              res.json('invalid');
+              output.status = false;
+              output.user = null;
+              res.json(output);
             });
 
           }
@@ -103,7 +109,9 @@ router.route('/ticket/:ticket_id')
     reqGet.end();
     reqGet.on('error', function(e) {
       console.error(e);
-      res.json('invalid');
+      output.status = false;
+      output.user = null;
+      res.json(output);
     });
 
   });
