@@ -45,7 +45,6 @@ router.route('/ticket/:ticket_id')
         var parseString = require('xml2js').parseString;
         var xml = d;
         parseString(xml, function (err, result) {
-          console.dir(result);
           var response = result["cas:serviceResponse"];
           var success = response["cas:authenticationSuccess"];
 
@@ -82,14 +81,17 @@ router.route('/ticket/:ticket_id')
               });
             });
 
+            profilereqGet.end();
+            profilereqGet.on('error', function(e) {
+              console.error(e);
+              res.json('invalid');
+            });
+
+          }
+          else{
+            res.json('invalid');
           }
 
-
-          profilereqGet.end();
-          profilereqGet.on('error', function(e) {
-            console.error(e);
-            res.json('invalid');
-          });
 
         });
 
