@@ -88,16 +88,12 @@ router.route('/ticket/:ticket_id')
             profilereqGet.end();
             profilereqGet.on('error', function(e) {
               console.error(e);
-              output.status = false;
-              output.user = null;
-              res.json(output);
+              res.status(401).send();
             });
 
           }
           else{
-            output.status = false;
-            output.user = null;
-            res.json(output);
+            res.status(401).send();
           }
 
 
@@ -111,9 +107,7 @@ router.route('/ticket/:ticket_id')
     reqGet.end();
     reqGet.on('error', function(e) {
       console.error(e);
-      output.status = false;
-      output.user = null;
-      res.json(output);
+      res.status(401).send();
     });
 
   });
