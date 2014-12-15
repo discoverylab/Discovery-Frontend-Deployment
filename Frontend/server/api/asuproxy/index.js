@@ -28,9 +28,9 @@ router.route('/ticket/:ticket_id')
       method : 'GET' // do GET
     };
 
-    console.info('Options prepared:');
-    console.info(optionsget);
-    console.info('Do the GET call');
+    //console.info('Options prepared:');
+    //console.info(optionsget);
+    //console.info('Do the GET call');
 
 // do the GET request
     var reqGet = https.request(optionsget, function(response) {
@@ -95,7 +95,7 @@ router.route('/ticket/:ticket_id')
 
         });
 
-        console.info('\n\nCall completed');
+        console.info('Call completed');
       });
 
     });
