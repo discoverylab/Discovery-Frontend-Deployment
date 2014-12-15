@@ -40,8 +40,8 @@ router.route('/ticket/:ticket_id')
 
 
       response.on('data', function(d) {
-        console.info('GET result:\n');
-        process.stdout.write(d);
+        //console.info('GET result:\n');
+        //process.stdout.write(d);
         var parseString = require('xml2js').parseString;
         var xml = d;
         parseString(xml, function (err, result) {
@@ -65,12 +65,12 @@ router.route('/ticket/:ticket_id')
               console.log("statusCode: ", response.statusCode);
 
               response.on('data', function(pd) {
-                console.info('GET result:\n');
-                process.stdout.write(pd);
+                //console.info('GET result:\n');
+                //process.stdout.write(pd);
 
                 var profilexml = pd;
                 parseString(profilexml, function (error, profileresult) {
-                  console.dir(profileresult);
+                  //console.dir(profileresult);
                   var asuuser = {id:'', email: '', name: '', type:true};
                   asuuser.id =  casuser;
                   asuuser.email = profileresult.searchResults.person[0].email[0];
