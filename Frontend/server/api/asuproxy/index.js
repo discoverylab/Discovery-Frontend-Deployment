@@ -48,41 +48,47 @@ router.route('/ticket/:ticket_id')
           console.dir(result);
           var response = result["cas:serviceResponse"];
           var success = response["cas:authenticationSuccess"];
-          var casuser = success[0]["cas:user"][0];
-          console.log('valid: ' + casuser);
 
-          var profileoptionsget = {
-            host : 'webapp4.asu.edu', // here only the domain name
-            // (no http/https !)
-            port : 443,
-            path : '/directory/ws/search?asuriteId=' + casuser, // the rest of the url with parameters if needed
-            method : 'GET' // do GET
-          };
+          if(success){
 
-          var profilereqGet = https.request(profileoptionsget, function(response) {
-            console.log("statusCode: ", response.statusCode);
+            var casuser = success[0]["cas:user"][0];
+            console.log('valid: ' + casuser);
 
-            response.on('data', function(pd) {
-              console.info('GET result:\n');
-              process.stdout.write(pd);
+            var profileoptionsget = {
+              host : 'webapp4.asu.edu', // here only the domain name
+              // (no http/https !)
+              port : 443,
+              path : '/directory/ws/search?asuriteId=' + casuser, // the rest of the url with parameters if needed
+              method : 'GET' // do GET
+            };
 
-              var profilexml = pd;
-              parseString(profilexml, function (error, profileresult) {
-                console.dir(profileresult);
-                var asuuser = {id:'', email: '', name: '', type:true};
-                asuuser.id =  casuser;
-                asuuser.email = profileresult.searchResults.person[0].email[0];
-                asuuser.name = profileresult.searchResults.person[0].displayName[0];
-                res.json(asuuser);
+            var profilereqGet = https.request(profileoptionsget, function(response) {
+              console.log("statusCode: ", response.statusCode);
+
+              response.on('data', function(pd) {
+                console.info('GET result:\n');
+                process.stdout.write(pd);
+
+                var profilexml = pd;
+                parseString(profilexml, function (error, profileresult) {
+                  console.dir(profileresult);
+                  var asuuser = {id:'', email: '', name: '', type:true};
+                  asuuser.id =  casuser;
+                  asuuser.email = profileresult.searchResults.person[0].email[0];
+                  asuuser.name = profileresult.searchResults.person[0].displayName[0];
+                  res.json(asuuser);
+                });
+
               });
-
             });
-          });
+
+          }
+
 
           profilereqGet.end();
           profilereqGet.on('error', function(e) {
             console.error(e);
-            res.send(e);
+            res.json('invalid');
           });
 
         });
@@ -95,7 +101,7 @@ router.route('/ticket/:ticket_id')
     reqGet.end();
     reqGet.on('error', function(e) {
       console.error(e);
-      res.send(e);
+      res.json('invalid');
     });
 
   });
