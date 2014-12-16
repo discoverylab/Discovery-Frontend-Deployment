@@ -24,7 +24,7 @@ router.route('/ticket/:ticket_id/quizid/:quiz_id')
 // options for GET
       var optionsget;
 
-      if(quizid){
+      if(typeof quizid != "undefined" && quizid != null){
         optionsget= {
           host : 'weblogin.asu.edu', // here only the domain name
           // (no http/https !)
