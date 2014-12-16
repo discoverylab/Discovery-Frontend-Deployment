@@ -10,23 +10,38 @@ var router = express.Router();
 
 router.get('/', controller.index);
 
-router.route('/ticket/:ticket_id')
+router.route('/ticket/:ticket_id/quizid/:quiz_id')
   .get(function(req, res){
 
 
     var https = require('https');
+    var ticket = req.params.ticket_id;
+    var quizid = req.params.quiz_id;
 
     /**
      * HOW TO Make an HTTP Call - GET
      */
 // options for GET
-    var optionsget = {
-      host : 'weblogin.asu.edu', // here only the domain name
-      // (no http/https !)
-      port : 443,
-      path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu&ticket=' + req.params.ticket_id, // the rest of the url with parameters if needed
-      method : 'GET' // do GET
-    };
+      var optionsget;
+
+      if(quizid){
+        optionsget= {
+          host : 'weblogin.asu.edu', // here only the domain name
+          // (no http/https !)
+          port : 443,
+          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu%2F%3Fquizid='+ quizid + '&ticket=' + req.params.ticket_id, // the rest of the url with parameters if needed
+          method : 'GET' // do GET
+        };
+      } else{
+        optionsget = {
+          host : 'weblogin.asu.edu', // here only the domain name
+          // (no http/https !)
+          port : 443,
+          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu&ticket=' + req.params.ticket_id, // the rest of the url with parameters if needed
+          method : 'GET' // do GET
+        };
+      }
+
 
     //console.info('Options prepared:');
     //console.info(optionsget);
