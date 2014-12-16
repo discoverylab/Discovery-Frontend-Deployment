@@ -29,7 +29,7 @@ router.route('/ticket/:ticket_id/quizid/:quiz_id')
           host : 'weblogin.asu.edu', // here only the domain name
           // (no http/https !)
           port : 443,
-          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu%2F%3Fquizid='+ quizid + '&ticket=' + req.params.ticket_id, // the rest of the url with parameters if needed
+          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu%2F%3Fquizid='+ quizid + '&ticket=' + ticket, // the rest of the url with parameters if needed
           method : 'GET' // do GET
         };
       } else{
@@ -37,15 +37,15 @@ router.route('/ticket/:ticket_id/quizid/:quiz_id')
           host : 'weblogin.asu.edu', // here only the domain name
           // (no http/https !)
           port : 443,
-          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu&ticket=' + req.params.ticket_id, // the rest of the url with parameters if needed
+          path : '/cas/serviceValidate?service=https%3A%2F%2Fdiscovery.a2c2.asu.edu&ticket=' + ticket, // the rest of the url with parameters if needed
           method : 'GET' // do GET
         };
       }
 
 
-    //console.info('Options prepared:');
-    //console.info(optionsget);
-    //console.info('Do the GET call');
+    console.info('Options prepared:');
+    console.info(optionsget);
+    console.info('Do the GET call');
 
     var output = {status:false, user:''};
 
