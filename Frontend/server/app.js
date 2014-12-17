@@ -19,6 +19,16 @@ var httpsconfig     = {
   cert: fs.readFileSync(cert_file)
 };
 
+// set up plain http server
+var http = express.createServer();
+// set up a route to redirect http to https
+http.get('*',function(req,res){
+  res.redirect('https://discovery.a2c2.asu.edu'+req.url)
+});
+
+// have it listen on 8080
+http.listen(8080);
+
 
 var express = require('express');
 var config = require('./config/environment');
