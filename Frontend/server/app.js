@@ -8,7 +8,6 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 //process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-
 var https = require('https');
 var fs         = require("fs");
 var key_file   = "server/certs/localhost.key";
@@ -18,16 +17,6 @@ var httpsconfig     = {
   key: fs.readFileSync(key_file),
   cert: fs.readFileSync(cert_file)
 };
-
-// set up plain http server
-var http = express.createServer();
-// set up a route to redirect http to https
-http.get('*',function(req,res){
-  res.redirect('https://discovery.a2c2.asu.edu'+req.url)
-});
-
-// have it listen on 8080
-http.listen(8080);
 
 
 var express = require('express');
@@ -49,6 +38,20 @@ server.listen(config.port, config.ip, function () {
 // Start https server
 server.listen(3443, config.ip, function () {
   console.log('Express server listening on 3443, in %s mode', app.get('env'));
+});
+
+var http = require('http');
+
+// set up plain http server
+var httpserver = http.createServer(app);
+// set up a route to redirect http to https
+httpserver.get('*',function(req,res){
+  res.redirect('https://discovery.a2c2.asu.edu'+req.url)
+});
+
+// Start http server
+httpserver.listen(8080, config.ip, function () {
+  console.log('http server listening on 8080, in %s mode', app.get('env'));
 });
 
 // Expose app
