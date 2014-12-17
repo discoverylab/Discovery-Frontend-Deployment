@@ -42,17 +42,17 @@ server.listen(3443, config.ip, function () {
 
 var http = require('http');
 
-// set up plain http server
-var httpserver = http.createServer(app);
-// set up a route to redirect http to https
-httpserver.get('*',function(req,res){
-  res.redirect('https://discovery.a2c2.asu.edu'+req.url)
+var redirectApp = express () ,
+  redirectServer = http.createServer(redirectApp);
+
+redirectApp.use(function requireHTTPS(req, res, next) {
+  if (!req.secure) {
+    return res.redirect('https://' + req.headers.host + req.url);
+  }
+  next();
 });
 
-// Start http server
-httpserver.listen(8080, config.ip, function () {
-  console.log('http server listening on 8080, in %s mode', app.get('env'));
-});
+redirectServer.listen(8080);
 
 // Expose app
 exports = module.exports = app;
