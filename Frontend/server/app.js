@@ -40,6 +40,7 @@ server.listen(3443, config.ip, function () {
   console.log('Express server listening on 3443, in %s mode', app.get('env'));
 });
 
+//http redirection
 var http = require('http');
 
 var redirectApp = express () ,
