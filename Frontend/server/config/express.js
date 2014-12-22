@@ -13,6 +13,9 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
+// Configuring Passport
+var passport = require('passport');
+var expressSession = require('express-session');
 var config = require('./environment');
 
 module.exports = function(app) {
@@ -26,6 +29,9 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+  app.use(expressSession({secret: 'xu4bb9i-o(c**u=s@w!!$bju*1*c5m*z9p3!j&@cng=$k!+e12'}));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   if ('production' === env) {
     //app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));

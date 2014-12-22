@@ -15,7 +15,10 @@
     "lodash": "~2.4.1",
     "ejs": "~0.8.4",
     "composable-middleware": "^0.3.0",
-    "connect-mongo": "^0.4.1"
+    "connect-mongo": "^0.4.1",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "express-session": "latest"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
