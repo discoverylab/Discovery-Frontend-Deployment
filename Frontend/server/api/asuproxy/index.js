@@ -8,7 +8,6 @@ var controller = require('./asuproxy.controller');
 
 var router = express.Router();
 
-router.get('/ticket/:ticket_id/quizid/:quiz_id', controller.asulogin);
-
+router.get('/ticket/:ticket_id/quizid/:quiz_id', controller.index);
 
 module.exports = router;

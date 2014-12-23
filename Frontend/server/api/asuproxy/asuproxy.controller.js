@@ -16,7 +16,7 @@
 var _ = require('lodash');
 
 // Get list of things
-exports.asulogin = function(req, res) {
+exports.index = function(req, res) {
 
   var https = require('https');
   var ticket = req.params.ticket_id;
