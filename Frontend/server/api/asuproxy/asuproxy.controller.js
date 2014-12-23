@@ -91,7 +91,7 @@ exports.index = function(req, res) {
 
               var profilexml = pd;
               parseString(profilexml, function (error, profileresult) {
-                //console.dir(profileresult);
+                console.dir(profileresult);
                 var asuuser = {id:'', email: '', name: '', type:true};
                 asuuser.id =  casuser;
                 asuuser.email = profileresult.searchResults.person[0].email[0];
